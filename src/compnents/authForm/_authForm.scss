@@ -1,0 +1,81 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as mx;
+
+.auth {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+.auth-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  padding: 24px 16px;
+  background-color: #FFFFFF;
+  width: 420px;
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  &__button {
+    padding: 0;
+    background: none;
+    outline: none;
+    border: 0;
+    border-radius: 0;
+    cursor: pointer;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+
+    &:hover {
+      color: rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: -70px;
+    padding: 12px;
+    border-radius: 50px;
+    cursor: pointer;
+    color: black;
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+}

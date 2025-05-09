@@ -1,0 +1,17 @@
+@use './mixins' as mx;
+
+.container {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 80px;
+  height: 100%;
+
+
+  @include mx.vp-1023 {
+    padding-inline: 30px;
+  }
+
+  @include mx.vp-767 {
+    padding-inline: 20px;
+  }
+}
