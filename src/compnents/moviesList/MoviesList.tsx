@@ -5,14 +5,16 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 
 
-export const MoviesList:FC<MoviesState> = ({list , loading , error}) => {
+export const MoviesList:FC<MoviesState> = ({list , loading , error , title}) => {
 
   if (loading) {
     return <Loader />;
   }
 
   return (
+    <section className="movies">
       <div className="container">
+        <h1 className="movies__title">{title}</h1>
         <ul className="movies__list">
             {error ? (
               <ErrorFunction error={error} />
@@ -33,5 +35,6 @@ export const MoviesList:FC<MoviesState> = ({list , loading , error}) => {
             )}
         </ul>
       </div>
+    </section>
   );
 };

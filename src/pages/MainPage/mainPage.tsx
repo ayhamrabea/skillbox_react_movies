@@ -40,7 +40,7 @@ const Mainpage: FC = () => {
 				</div>
         	</section>
 			<section className="movies">
-				<MoviesList list={list} loading={loading} error={error} />
+				<MoviesList list={list} loading={loading} error={error} title='Топ 10 фильмов'/>
 			</section>
 		</>
 	);

@@ -36,11 +36,7 @@ const MoviesByGener: FC = () => {
 	}, [dispatch , genre])
 		
 	return (
-		<>
-            <section className="movies">
-                    <MoviesList list={list.slice(0, visibleCount)} loading={loading} error={error} />
-			</section>
-		</>
+		<MoviesList list={list.slice(0, visibleCount)} loading={loading} error={error} title={genre}/>
 	);
 };
 

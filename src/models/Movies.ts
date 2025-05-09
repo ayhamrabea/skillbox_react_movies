@@ -33,5 +33,6 @@ export interface MoviesState {
     list: Movie[];
     loading: boolean;
     error: string | null;
+    title?:string | null;
 }
 

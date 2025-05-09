@@ -1,0 +1,41 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as mx;
+
+.footer{
+    margin: 42px 0;
+
+    &__list{
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        gap: 24px;
+        justify-content: end;
+    }
+
+    &__item{
+        width: 36px;
+        height: 36px;
+        border: 1px solid v.$color-White;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all ease v.$transition-300;
+
+        &:hover{
+            border: 1px solid v.$color-Blue-Jeans;
+            .footer__item-link{
+                color: v.$color-Blue-Jeans;
+            }
+        }
+
+        &-link{
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            color: #FFFFFF;
+            align-items: center;
+        }
+    }
+}
