@@ -1,6 +1,6 @@
 ;import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { registerUser } from "../../features/auth/aythSlice";
-import { FormField } from "../FormField/FormField";
+import { FormField } from "../formField/FormField";
 import { Button } from "../button/Button";
 import { useState } from "react";
 import { LoginForm } from "../loginForm/LoginForm";
@@ -10,12 +10,12 @@ import { LoginForm } from "../loginForm/LoginForm";
 export const RegisterForm = () => {
   const dispatch = useAppDispatch();
 
-  const { loading, error } = useAppSelector((state) => state.auth);
+  const { loading , error } = useAppSelector((state) => state.auth);
   const [localError, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     email: '',
     username: '',
-    lastname: '',
+    surname: '',
     password: '',
     password2: '',
   });
@@ -46,9 +46,8 @@ export const RegisterForm = () => {
   return (
     <form className="register-form" onSubmit={handleSubmit}>
       {localError && <p className="register-form__error">{localError}</p>}
-      {error && <p className="register-form__error">{error}</p>}
 
-      <FormField >
+      <FormField errorMessage={error?.general}>
         <input
           type="email"
           name="email"
@@ -59,7 +58,7 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField >
+      <FormField errorMessage={error?.general}>
         <input
           type="text"
           name="username"
@@ -70,18 +69,18 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField>
+      <FormField errorMessage={error?.general}>
         <input
           type="text"
-          name="lastname"
-          value={formData.lastname}
+          name="surname"
+          value={formData.surname}
           onChange={handleChange}
            placeholder="Фамилия"
           required
         />
       </FormField>
 
-      <FormField >
+      <FormField errorMessage={localError}>
         <input
           type="password"
           name="password"
@@ -92,7 +91,7 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField >
+      <FormField errorMessage={localError}>
         <input
           type="password"
           name="password2"

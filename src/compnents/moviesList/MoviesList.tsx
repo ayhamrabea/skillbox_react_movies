@@ -10,7 +10,8 @@ export const MoviesList:FC<MoviesState> = ({list , loading , error , title}) => 
   if (loading) {
     return <Loader />;
   }
-
+  let count = 1
+  
   return (
     <section className="movies">
       <div className="container">
@@ -21,6 +22,7 @@ export const MoviesList:FC<MoviesState> = ({list , loading , error , title}) => 
             ) : list && list.length > 0 ? (
               list.map((movie) => (
                 <li className="movies__item" key={movie.id}>
+                  {title === 'Топ 10 фильмов' && <div className="movies__item-count">{count++}</div>}
                   <Link to={`/movie/${movie.id}`} className="movies__item-link">
                     <img
                       className="movies__item-poster"

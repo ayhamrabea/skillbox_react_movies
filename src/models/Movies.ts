@@ -36,3 +36,8 @@ export interface MoviesState {
     title?:string | null;
 }
 
+
+export interface MovieCardProps {
+    movie: Movie,
+    onResetMovie?: () => void;
+}

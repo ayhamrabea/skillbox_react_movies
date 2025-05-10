@@ -1,17 +1,32 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as mx;
+
 .btn {
     padding: 16px 48px;
     font-weight: 700;
     font-size: 18px;
     line-height: 24px;
-    color: #FFFFFF;
-    background-color: #67A5EB;
+    color: v.$color-White;
+    background-color: v.$color-Blue-Jeans;
     border-radius: 28px;
     border: none;
     cursor: pointer;
-    transition: all .7s ease ;
+    transition: color v.$transition-300 , background v.$transition-300 ;
 
+    &:hover{
+        color: v.$color-black;
+        background-color: v.$color-White;
+
+        .btn--icon{
+            color: v.$color-black;
+        }
+    }
 
     &--icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
         padding: 14px 20px;
     }
 
@@ -37,4 +52,4 @@
     @media (max-width: 767px) {
         padding: 16px 40px;
     }
-  }
+}

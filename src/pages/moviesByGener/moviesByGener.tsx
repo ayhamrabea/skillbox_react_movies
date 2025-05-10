@@ -35,9 +35,11 @@ const MoviesByGener: FC = () => {
 		}
 	}, [dispatch , genre])
 		
+
 	return (
 		<MoviesList list={list.slice(0, visibleCount)} loading={loading} error={error} title={genre}/>
 	);
 };
 
 export default MoviesByGener;
+

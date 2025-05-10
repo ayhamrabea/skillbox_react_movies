@@ -21,7 +21,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transition: all ease v.$transition-300;
+        transition: border v.$transition-300;
+        cursor: pointer;
 
         &:hover{
             border: 1px solid v.$color-Blue-Jeans;
@@ -34,8 +35,9 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            color: #FFFFFF;
+            color: v.$color-White;
             align-items: center;
+            transition: color v.$transition-300;
         }
     }
 }

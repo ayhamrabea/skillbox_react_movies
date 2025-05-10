@@ -3,8 +3,12 @@
 *::before {
   box-sizing: border-box;
 }
+body{
+    margin: 0;
+    padding: 0;
+}
 
-body {
+#root{
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -15,7 +19,7 @@ body {
 }
 
 main {
-  flex-grow: 1;
+  flex: 1;
 }
 
 img {

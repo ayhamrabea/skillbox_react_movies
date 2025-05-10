@@ -21,7 +21,7 @@ const MoviePage = () => {
         <section className="movie">
             <div className="container">
                     {movieLoading && <Loader /> }
-                    {movie ? <MovieCard  movie={movie} is_random={false}/> : <ErrorFunction error={movieError} /> }
+                    {movie ? <MovieCard  movie={movie}/> : <ErrorFunction error={movieError} /> }
             </div>
         </section>
     )

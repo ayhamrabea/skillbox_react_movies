@@ -13,7 +13,6 @@ export const Navbar = () => {
     const handleAuthButtonClick = () => {
         setIsAuthFormVisible(true);
     };
-
     return (
         <div className="container">
             <nav className="navbar">
@@ -38,7 +37,7 @@ export const Navbar = () => {
                         <SearchDropdown />
                     </div>
                     {user ?
-                        <p>{user.username}</p> 
+                        <p>{user.name}</p> 
                         : 
                         <Button className='btn btn-auth' onClick={handleAuthButtonClick}>
                             Войти

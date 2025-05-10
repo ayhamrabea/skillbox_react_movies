@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { fetchGenresMovies } from "../../features/genres/GenresSlice";
 import { Loader } from "../../compnents/loader/Loader";
 import { Link } from "react-router-dom";
-
+import posters  from '../../api/images.json'
 
 const GenrePage: FC = () => {
 	
@@ -18,17 +18,24 @@ const GenrePage: FC = () => {
 		<>
 		<section className="movies">
             <div className="container">
+			<h1 className="movies__title">Жанры фильмов</h1>
 			<ul className="movies__list">
 				{loading && <Loader />}
 				{error && <p>{error}</p>}
-				{!loading && !error && list.length > 0 && list.map((item) => (
-					<li key={item} className="movies__item">
-						<Link to={`/movie?genre=${item}`}>
-							<div className="movies__item-ganre">
-								{item}
-							</div>
-						</Link>
-					</li>
+				{!loading &&
+					!error &&
+					list.length > 0 &&
+					list.map((item , index) => (
+						<li key={item} className="movies__item">
+							<Link to={`/movie?genre=${item}`}>
+								<div className="movies__item-poster">
+									<img  className="movies__item-poster-img" src={posters[index]} alt={item} />
+								</div>
+								<div className="movies__item-title">
+									{item}
+								</div>
+							</Link>
+						</li>
 				))}
 			</ul>
             </div>

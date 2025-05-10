@@ -39,9 +39,20 @@
   border-radius: 28px;
   border: none;
   cursor: pointer;
-  transition: all 0.7s ease;
+  transition: color ease-in 0.3s, background ease-in 0.3s;
+}
+.btn:hover {
+  color: black;
+  background-color: #FFFFFF;
+}
+.btn:hover .btn--icon {
+  color: black;
 }
 .btn--icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
   padding: 14px 20px;
 }
 .btn--Onyx {
@@ -170,12 +181,6 @@
     gap: 12px;
   }
 }
-.movie-card__actions-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
 
 .movie-detailes {
   display: flex;
@@ -278,14 +283,22 @@
     scrollbar-width: thin;
     gap: 30px;
   }
+  .movies__list::-webkit-scrollbar {
+    display: none;
+  }
 }
 .movies__item {
+  position: relative;
   max-width: 224px;
   max-height: 336px;
-  position: relative;
   box-shadow: 0 0 80px rgba(255, 255, 255, 0.3294117647);
+  border-radius: 16px;
 }
-@media (max-width: 767px) {
+.movies__item:hover .movies__item-count {
+  background-color: black;
+  color: #FFFFFF;
+}
+@media (max-width: 1023px) {
   .movies__item {
     flex: 0 0 auto;
     width: 300px;
@@ -296,12 +309,28 @@
     width: 100%;
   }
 }
+.movies__item-title {
+  position: absolute;
+  width: 100%;
+  background-color: black;
+  color: #FFFFFF;
+  text-align: center;
+  bottom: 0;
+  padding: 25px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  border-radius: 0 0 16px 16px;
+}
 .movies__item-poster {
   border-radius: 16px;
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.movies__item-poster img {
+  border-radius: 16px;
 }
 .movies__item-count {
   position: absolute;
@@ -314,6 +343,7 @@
   color: #6A5DC2;
   top: -25px;
   left: -25px;
+  transition: background-color ease-in 0.3s, color ease-in 0.3s;
 }
 .movies__title {
   font-weight: 700;
@@ -741,7 +771,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all ease ease-in 0.3s;
+  transition: border ease-in 0.3s;
+  cursor: pointer;
 }
 .footer__item:hover {
   border: 1px solid #67A5EB;
@@ -755,4 +786,5 @@
   justify-content: center;
   color: #FFFFFF;
   align-items: center;
+  transition: color ease-in 0.3s;
 }/*# sourceMappingURL=main.css.map */

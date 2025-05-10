@@ -1,32 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
+import { AuthState, ServerError  } from '../../models/auth';
 
-interface User {
-    username: string;
-    email: string;
-}
 
-interface AuthState {
-    user: null | User
-    token: string | null
-    loading: boolean
-    error: null | {
-        email?: string;
-        password?: string;
-        general?: string;
-    };
-}
-
-interface ServerError {
-    message?: string;
-    errors?: {
-        email?: string;
-        password?: string;
-        general?: string;
-    };
-}
 const initialState: AuthState = {
-    user: null,
+    user:  null,
     token: null,
     loading: false,
     error: null,
@@ -51,7 +29,7 @@ export const login = createAsyncThunk(
 
 export const registerUser = createAsyncThunk(
     'auth/registerUser',
-    async (formData: { username: string; email: string; password: string , lastname:string , password2:string }, thunkAPI) => {
+    async (formData: { username: string; email: string; password: string , surname:string , password2:string }, thunkAPI) => {
         try {
             const response = await axios.post('https://cinemaguide.skillbox.cc/user', formData);
             return response.data.user;
@@ -95,7 +73,7 @@ const authSlice = createSlice({
                 general?: string;
             };
 
-    state.error = payload || { general: 'Unknown error' };
+            state.error = payload || { general: 'Unknown error' };
         })
 
         .addCase(registerUser.pending, (state) => {
@@ -109,15 +87,13 @@ const authSlice = createSlice({
         })
         .addCase(registerUser.rejected, (state, action) => {
             state.loading = false;
-            const payload = action.payload as { message: string };
-            const errorMessage = payload.message;
-            if (errorMessage.toLowerCase().includes("email")) {
-                state.error = { email: errorMessage };
-            } else if (errorMessage.toLowerCase().includes("password")) {
-                state.error = { password: errorMessage };
-            } else {
-                state.error = { general: errorMessage };
-            }
+            const payload = action.payload as {
+                email?: string;
+                password?: string;
+                general?: string;
+            };
+
+            state.error = payload || { general: 'Unknown error' };
         });
     }
 })
