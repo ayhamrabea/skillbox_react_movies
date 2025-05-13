@@ -34,9 +34,13 @@
   gap: 24px;
   border-radius: 8px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-  padding: 24px 16px;
+  padding: 64px 40px;
   background-color: #FFFFFF;
-  width: 420px;
+  min-width: 330px;
+
+  @include mx.vp-767{
+    padding: 32px 20px;
+  }
 
   &__info {
     display: flex;
@@ -77,5 +81,33 @@
     align-items: center;
     justify-content: center;
     border: none;
+
+     @include mx.vp-767{
+      right: 0px;
+    }
+  }
+
+  &__copleted{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    text-align: center;
+    color: v.$color-black;
+
+    &-title{
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 32px;
+      margin: 0;
+      padding: 0;
+    }
+
+    &-text{
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 24px;
+      margin: 0;
+      padding: 0;
+    }
   }
 }

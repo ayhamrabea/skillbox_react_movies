@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { fetchGenresMovies } from "../../features/genres/GenresSlice";
 import { Loader } from "../../compnents/loader/Loader";
 import { Link } from "react-router-dom";
@@ -29,7 +29,7 @@ const GenrePage: FC = () => {
 						<li key={item} className="movies__item">
 							<Link to={`/movie?genre=${item}`}>
 								<div className="movies__item-poster">
-									<img  className="movies__item-poster-img" src={posters[index]} alt={item} />
+									<img  className="movies__item-poster-img" src={posters[index] ? posters[index]  : '/empty.png' } alt={item} />
 								</div>
 								<div className="movies__item-title">
 									{item}

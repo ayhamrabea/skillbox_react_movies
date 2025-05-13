@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { fetchMovie } from "../../features/movie/MovieSlice";
 import { ErrorFunction } from "../../compnents/error/Error";
 import { MovieCard } from "../../compnents/moviecard/MovieCard";

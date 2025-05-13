@@ -2,6 +2,7 @@
 @use '../compnents/moviecard/movieCard';
 @use '../compnents/moviesList/moviesList';
 @use '../compnents/navbar/navbar';
+@use '../compnents/search/custom-Input';
 @use '../compnents/search/search';
 @use '../compnents/Loader/Loader';
 @use '../compnents/trailer/trailer';
@@ -9,4 +10,5 @@
 @use '../compnents/FormField/FormField';
 @use '../compnents/registerForm/RegisterForm';
 @use '../compnents/loginForm/LoginForm';
-@use '../compnents/footer//footer';
+@use '../compnents/profile/profile';
+@use '../compnents/footer/footer';

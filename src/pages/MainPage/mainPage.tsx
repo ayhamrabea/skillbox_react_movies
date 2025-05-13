@@ -1,6 +1,6 @@
 import { MoviesList } from "../../compnents/moviesList/MoviesList";
 import { FC, useEffect } from "react";
-import { useAppDispatch , useAppSelector } from "../../app/hooks";
+import { useAppDispatch , useAppSelector } from "../../hooks/Redux";
 import { fetchTopTenMovies } from "../../features/topTen/TopTenSlice";
 import { FetchRandomMovie } from "../../features/randomMovie/RandomMovieSlice";
 import { Loader } from "../../compnents/loader/Loader";

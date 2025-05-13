@@ -1,20 +1,22 @@
-;import { useAppDispatch, useAppSelector } from "../../app/hooks";
+;import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { registerUser } from "../../features/auth/aythSlice";
 import { FormField } from "../formField/FormField";
 import { Button } from "../button/Button";
-import { useState } from "react";
-import { LoginForm } from "../loginForm/LoginForm";
+import { useEffect, useState } from "react";
 
 
+type RegisterFormProps = {
+  onCompleted: () => void;
+};
 
-export const RegisterForm = () => {
+export const RegisterForm = ({ onCompleted }: RegisterFormProps) => {
   const dispatch = useAppDispatch();
 
-  const { loading , error } = useAppSelector((state) => state.auth);
+  const { loading  } = useAppSelector((state) => state.auth);
   const [localError, setError] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     email: '',
-    username: '',
+    name: '',
     surname: '',
     password: '',
     password2: '',
@@ -39,15 +41,19 @@ export const RegisterForm = () => {
     }
   };
 
-  if (isRegistered) {
-    return <LoginForm />;
-  }
+  useEffect(() => {
+    if (isRegistered) {
+      onCompleted();
+    }
+  }, [isRegistered, onCompleted]);
+
+  const isFormInvalid = !formData;
 
   return (
     <form className="register-form" onSubmit={handleSubmit}>
       {localError && <p className="register-form__error">{localError}</p>}
 
-      <FormField errorMessage={error?.general}>
+      <FormField iconNmae="email">
         <input
           type="email"
           name="email"
@@ -58,18 +64,18 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField errorMessage={error?.general}>
+      <FormField iconNmae="auth">
         <input
           type="text"
-          name="username"
-          value={formData.username}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
-           placeholder="Имя"
+          placeholder="Имя"
           required
         />
       </FormField>
 
-      <FormField errorMessage={error?.general}>
+      <FormField iconNmae="auth">
         <input
           type="text"
           name="surname"
@@ -80,7 +86,7 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField errorMessage={localError}>
+      <FormField iconNmae="password">
         <input
           type="password"
           name="password"
@@ -91,7 +97,7 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <FormField errorMessage={localError}>
+      <FormField iconNmae="password">
         <input
           type="password"
           name="password2"
@@ -102,9 +108,13 @@ export const RegisterForm = () => {
         />
       </FormField>
 
-      <Button type="submit" className="btn" disabled={loading}>
-        Зарегистрироваться
-      </Button>
+      <Button
+            type="submit"
+            className="btn"
+            disabled={loading || isFormInvalid}
+            >
+            {loading ? "Загрузка..." : "Зарегистрироваться"}
+        </Button>
     </form>
   );
 };

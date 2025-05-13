@@ -3,11 +3,12 @@ export interface User {
     email: string;
     name?:string;
     surname?:string;
+    favorites?: string[];
+    profileLoaded: boolean;
 }
 
 export interface AuthState {
     user: null | User
-    token: string | null
     loading: boolean
     error: null | {
         email?: string;
@@ -23,4 +24,8 @@ export interface ServerError {
         password?: string;
         general?: string;
     };
+}
+
+export interface AuthFormProps {
+    onClose?: () => void;
 }

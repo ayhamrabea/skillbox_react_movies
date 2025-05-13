@@ -26,7 +26,7 @@ export const MoviesList:FC<MoviesState> = ({list , loading , error , title}) => 
                   <Link to={`/movie/${movie.id}`} className="movies__item-link">
                     <img
                       className="movies__item-poster"
-                      src={movie.posterUrl}
+                      src={movie.posterUrl ? movie.posterUrl : '//empty.png'}
                       alt={movie.title}
                     />
                   </Link>

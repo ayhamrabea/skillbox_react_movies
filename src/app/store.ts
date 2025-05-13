@@ -7,6 +7,7 @@ import Geners from '../features/genres/GenresSlice'
 import searchSlice from "../features/search/searchSlice";
 import authSlice from "../features/auth/aythSlice";
 import GenreMoviesSlice from "../features/genres/GenreMoviesSlice";
+import favoriteSlice from "../features/favorite/FavoriteSlice";
 
 export const store = configureStore({
     reducer:{
@@ -18,6 +19,7 @@ export const store = configureStore({
         search:searchSlice,
         auth:authSlice,
         moviesByGener:GenreMoviesSlice,
+        favorites:favoriteSlice,
     }
 })
 

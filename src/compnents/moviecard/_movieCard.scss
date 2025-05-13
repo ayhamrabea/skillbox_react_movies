@@ -49,9 +49,22 @@
         font-size: 18px;
         line-height: 24px;
         padding: 4px 12px;
-        background-color: #308E21;
         border-radius: 16px;
         color: #FFFFFF;
+
+
+        &--yellow{
+            background-color: v.$color-Brown-Yellow;
+        }
+        &--Green{
+            background-color: v.$color-Forest-Green;
+        }
+        &--Boulder{
+            background-color: v.$color-Boulder;
+        }
+        &--red{
+            background-color: v.$color-Fire-Engine-Red;
+        }
     }
 
     &__title {
@@ -107,9 +120,6 @@
         }
     }
 
-    // &__actions-icon {
-        
-    // }
 }
 
 .movie-detailes {

@@ -1,50 +1,66 @@
-import { useEffect } from 'react';
-import {  useAppDispatch, useAppSelector } from '../../app/hooks';
+import { FC, useEffect, useMemo } from 'react';
+import {  useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { fetchMovies } from '../../features/movies/MoviesSlice';
 import { timeComversion } from '../../utils/tuleComverstion';
 import { Link } from 'react-router-dom';
+import { Rating } from '../rating/rating';
+import { setSearchTerm } from '../../features/search/searchSlice';
 
 
-export const SearchDropdown = () => {
+interface SearchDropdownProps {
+    setSearchVisible: (value: boolean) => void;
+}
+
+
+export const SearchDropdown: FC<SearchDropdownProps> = ({ setSearchVisible }) => {
     const dispatch = useAppDispatch();
     const search = useAppSelector((state) => state.search.term);
     const { list  } = useAppSelector((state) => state.movies);
-
+    
 	useEffect(() => {
         if (list.length === 0) {
             dispatch(fetchMovies());
         }
-    }, [dispatch, list]);
+    }, [dispatch, list ]);
     
-	const filteredMovies = list.filter((movie) =>
-		movie.title.toLowerCase().includes(search.toLowerCase())
-	);
+
+
+    const filteredMovies = useMemo(() => 
+        list.filter((movie) =>
+            movie.title.toLowerCase().includes(search.toLowerCase())
+    ), [list, search]);
 
     if(!search.trim()) return null
 
     return (
-        <div className="navbar__search-mode">
-            <ul className="navbar__search-list">
+        <div className="search-mode">
+            <ul className="search-list">
                 {filteredMovies && filteredMovies.length > 0 ? 
-                    (filteredMovies.map((movie) =>(
-                        <li className="navbar__search-item" key={movie.id}>
-                            <Link className="navbar__search-link" to={`movie/${movie.id}`}>
-                                <img className="navbar__search-poster"
-                                    src={movie.posterUrl}
+                    (filteredMovies.slice(0 , 10 ).map((movie) =>(
+                        <li className="search-item" key={movie.id}>
+                            <Link 
+                            className="search-link"
+                            to={`movie/${movie.id}`}
+                            onClick={() => {
+                                setSearchVisible(false);
+                                dispatch(setSearchTerm(""));
+                            }}>
+                                <img className="search-poster"
+                                    src={movie.posterUrl ? movie.posterUrl : '/empty.png'}
                                     alt={movie.title}
                                     loading='lazy'/>
-                                    <div className="navbar__search-info">
-                                        <div className="navbar__search-meta">
-                                            <span className="navbar__search-rating">⭐ {movie.tmdbRating?.toFixed(1) || 'N/A'}</span>
-                                            <span className="navbar__search-year">{movie.releaseYear}</span>
-                                            <span className="navbar__search-genre">{movie.genres?.[0]}</span>
-                                            <span className="navbar__search-runtime ">{timeComversion(movie.runtime)}</span>
-                                        </div>
-                                        <h3 className="navbar__search-title ">{movie.title}</h3>
+                                <div className="search-info">
+                                    <div className="search-meta">
+                                        <Rating tmdbRating={movie.tmdbRating}/>
+                                        <span className="search-year">{movie.releaseYear}</span>
+                                        <span className="search-genre">{movie.genres?.[0]}</span>
+                                        <span className="search-runtime ">{timeComversion(movie.runtime)}</span>
                                     </div>
+                                    <h3 className="search-title ">{movie.title}</h3>
+                                </div>
                             </Link>
                         </li>
-                    ))) : <li className="navbar__search-item"> there are no movies</li> }
+                    ))) : <li className="search-item"> Никаких фильмов не найдено</li> }
             </ul>
         </div>
     )

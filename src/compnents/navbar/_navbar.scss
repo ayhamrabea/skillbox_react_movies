@@ -1,3 +1,6 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as mx;
+
 .navbar {
     padding: 24px 0;
     max-height: 96px;
@@ -6,13 +9,14 @@
     justify-content: space-between;
     gap: 80px;
     margin: 0 0 32px 0;
-    color: #FFFFFF;
+    color:v.$color-White;
 
-    @media (max-width: 767px) {
-        gap: 140px;
+    @include mx.vp-767 {
+        gap: 24px;
         margin: 0;
     }
 
+    //logo
     &__logo {
         min-width: 143px;
         height: 32px;
@@ -27,17 +31,22 @@
         }
     }
 
-    &__nav {
+    /// links + search
+    &__right{
         display: flex;
+        gap: 40px;
+        justify-content: space-between;
         align-items: center;
         flex: 1;
-        gap: 40px;
 
-        @media (max-width: 767px) {
-            display: none;
+        @include mx.vp-767 {
+            gap: 24px;
+            justify-content: flex-end;
         }
     }
 
+
+    /// links
     &__list {
         display: flex;
         list-style: none;
@@ -45,6 +54,10 @@
         align-items: center;
         gap: 40px;
         padding: 0;
+
+        @include mx.vp-767 {
+            display: none;
+        }
     }
 
     &__item {
@@ -57,24 +70,76 @@
         }
     }
 
-    &__nav-mob {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        display: none;
+    // search
+    &__search{
+        flex: 1;
+        
 
-        @media (max-width: 767px) {
-            display: flex;
+        @include mx.vp-767 {
+           flex: 0;
+        }
+        
+        &-input{
+
+            @include mx.vp-767 {
+                display: block;
+                position: absolute;
+                opacity: 0;
+                transform: translateY(-75px);
+                width: 100%;
+                top: 0;
+                left: 0;
+                transition: opacity v.$transition-300 , transform v.$transition-300;
+            }
         }
     }
 
-    &__nav-btn {
+    /// auth
+    &__auth{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 3px;
+        
+        &-link{
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+            color: v.$color-White;
+            display: flex;
+            align-items: center;
+            @include mx.vp-767 {
+                display: none;
+            }
+
+        }
+    }
+
+    &__mobile{
+        display: none;
         background: none;
         border: none;
         padding: 0;
         margin: 0;
         cursor: pointer;
         color: #FFFFFF;
+        height: 24px;
+
+        @include mx.vp-767 {
+            display: block;
+        }
+
     }
+}
+
+
+.navbar__search-input--move{
+
+    @include mx.vp-767 {
+        transform: translateY(20px);
+        opacity: 1;
+        width: 95%;
+        left: 20px;
+    }
+    
 }

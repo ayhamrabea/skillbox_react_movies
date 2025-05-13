@@ -1,0 +1,142 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as mx;
+
+.profile{
+    color: v.$color-White;
+
+    &__title{
+        font-weight: 700;
+        font-size: 48px;
+        line-height: 56px;
+        margin: 0 0 64px;
+
+        @include mx.vp-767{
+            font-size: 34px;
+            line-height: 40px;
+        }
+    }
+
+    &__list{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        gap: 64px;
+        list-style: none;
+        margin: 0 0 64px;
+
+        @include mx.vp-767{
+            gap: 24px;
+            flex-direction: column;
+        }
+    }
+
+    &__item{
+
+        &-btn{
+            border: none;
+            background:none;
+            color: v.$color-White;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 0 8px 0;
+            font-family: Play;
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 32px;
+            gap: 8px;
+            cursor: pointer;
+            transition: border-bottom v.$transition-300 , color v.$transition-300;
+
+            &:hover{
+                color: v.$color-Heliotrope;
+            }
+
+
+        }
+
+        .active{
+                border-bottom: 2px solid v.$color-Heliotrope;
+        }
+
+
+    }
+
+
+    &__data{
+
+        &-info{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 64px;
+        }
+
+        &-meta{
+            position: relative;
+            padding-left: 72px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        &-icon{
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 14px;
+            background-color: v.$color-Boulder;
+            border-radius: 50%;
+            color: v.$color-White;
+        }
+
+        &-key{
+            margin: 0;
+            padding: 0;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+        }
+
+        &-value{
+            margin: 0;
+            padding: 0;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 32px;
+        }
+
+    }
+
+    &__delete{
+        position: absolute;
+        top: -20px;
+        right: -10px;
+        padding: 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        color: v.$color-Onyx-opacity;
+        background-color: v.$color-White-opacity;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        transition: background-color v.$transition-300 , color v.$transition-300;
+
+        &:hover{
+            background-color: v.$color-White;
+            color: v.$color-Onyx;
+        }
+    }
+}
