@@ -1,4 +1,5 @@
 import { Button } from "../button/Button";
+import Icon from "../icon/Icon";
 import { Loader } from "../loader/Loader";
 import { useState } from "react";
 
@@ -24,9 +25,7 @@ export const Trailer = ({ url , onClose }: TrailerProps) => {
             <div className="container" onClick={e => e.stopPropagation()}>
                 <div className="trailer__content">
                     <Button className="trailer__close" type="button" onClick={onClose}>
-                        <svg className="trailer__close-icon" width="24" height="24" aria-hidden="true">
-                            <use xlinkHref="/vite.svg#icon-close" />
-                        </svg>
+                        <Icon className="trailer__close-icon" name="close" />
                     </Button>
                     <div className="trailer__box">
                         {isLoading && <Loader />}

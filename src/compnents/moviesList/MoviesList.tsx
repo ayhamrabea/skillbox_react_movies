@@ -10,7 +10,7 @@ export const MoviesList:FC<MoviesState> = ({list , loading , error , title}) => 
   if (loading) {
     return <Loader />;
   }
-  let count = 1
+
   
   return (
     <section className="movies">
@@ -20,20 +20,20 @@ export const MoviesList:FC<MoviesState> = ({list , loading , error , title}) => 
             {error ? (
               <ErrorFunction error={error} />
             ) : list && list.length > 0 ? (
-              list.map((movie) => (
+              list.map((movie , index) => (
                 <li className="movies__item" key={movie.id}>
-                  {title === 'Топ 10 фильмов' && <div className="movies__item-count">{count++}</div>}
+                  {title === 'Топ 10 фильмов' && <div className="movies__item-count">{index + 1}</div>}
                   <Link to={`/movie/${movie.id}`} className="movies__item-link">
                     <img
                       className="movies__item-poster"
-                      src={movie.posterUrl ? movie.posterUrl : '//empty.png'}
+                      src={movie.posterUrl || '/empty.png'}
                       alt={movie.title}
                     />
                   </Link>
                 </li>
               ))
             ) : (
-              <p>لا توجد أفلام حالياً.</p>
+              <p className="movies__empty-message">Нет фильмов для отображения.</p>
             )}
         </ul>
       </div>

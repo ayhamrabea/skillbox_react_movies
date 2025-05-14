@@ -51,6 +51,10 @@
         padding: 4px 12px;
         border-radius: 16px;
         color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
 
 
         &--yellow{
@@ -65,6 +69,13 @@
         &--red{
             background-color: v.$color-Fire-Engine-Red;
         }
+
+        &-icon{
+            width: 15px;
+            height: 14px;
+        }
+
+
     }
 
     &__title {
@@ -99,6 +110,7 @@
         justify-content: center;
         overflow: hidden;
         max-height: 552px;
+        border-radius: 16px;
 
         @media (max-width: 1023px) {
             margin-bottom: 24px;

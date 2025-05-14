@@ -14,6 +14,7 @@ const Mainpage: FC = () => {
     const { list ,loading , error } = useAppSelector((state) => state.topTen);
 	const { randomMovie , randomMovieLoading , randomMovieError } = useAppSelector((state) => state.randomMovie);
 
+
 	useEffect(() => {
 		if (list.length === 0 && !loading) {
 			dispatch(fetchTopTenMovies()); 

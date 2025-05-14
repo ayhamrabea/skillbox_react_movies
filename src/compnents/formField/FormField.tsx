@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import Icon from "../icon/Icon";
 
 
 interface IFormFieldProps {
@@ -14,18 +15,18 @@ export const FormField: FC<IFormFieldProps> = ({
     iconNmae,
 }) => {
     return (
-        <>
-            <label className="form-field">
+        <div className={`form-field ${errorMessage ? "form-field--error" : ""}`}>
+            <div className="form-field__input-wrapper">
+                {iconNmae && (
                 <div className="form-field__icon">
-                    <svg width="24" height="24" aria-hidden="true">
-                        <use xlinkHref={`vite.svg#icon-${iconNmae}`} />
-                    </svg>
+                    <Icon name={iconNmae} />
                 </div>
+                )}
                 {children}
-            </label>
+            </div>
             {errorMessage && (
                 <span className="form-field__error-text">{errorMessage}</span>
             )}
-        </>
-        );
+        </div>
+    );
 };

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import Icon from "../icon/Icon"
 
 export const Footer = () => {
 return (
@@ -7,30 +8,22 @@ return (
             <ul className="footer__list">
                 <li className="footer__item">
                     <Link className='footer__item-link' to='#' aria-label="vk">
-                        <svg className="footer__item-icon" width="19" height="11" aria-hidden="true">
-                            <use xlinkHref="/vite.svg#icon-vk" />
-                        </svg>
+                        <Icon className="footer__item-icon" name="vk" />
                     </Link>
                 </li>
                 <li className="footer__item">
                     <Link className='footer__item-link' to='#' aria-label="youtube">
-                        <svg className="footer__item-icon" width="15" height="11" aria-hidden="true">
-                            <use xlinkHref="/vite.svg#icon-youtube" />
-                        </svg>
+                        <Icon className="footer__item-icon" name="youtube" />
                     </Link>
                 </li>
                 <li className="footer__item">
                     <Link className='footer__item-link' to='#' aria-label="group">
-                        <svg className="footer__item-icon" width="11" height="18" aria-hidden="true">
-                            <use xlinkHref="/vite.svg#icon-group" />
-                        </svg>
+                        <Icon className="footer__item-icon" name="group" />
                     </Link>
                 </li>
                 <li className="footer__item">
                     <Link className='footer__item-link' to='#' aria-label="telegram">
-                        <svg className="footer__item-icon" width="16.45" height="13.63" aria-hidden="true">
-                            <use xlinkHref="/vite.svg#icon-telegram" />
-                        </svg>
+                        <Icon className="footer__item-icon" name="telegram" />
                     </Link>
                 </li>
             </ul>

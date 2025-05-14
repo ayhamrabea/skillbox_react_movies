@@ -8,21 +8,20 @@ interface FavoriteState {
     error: string | null;
 }
 
-// الحالة الأولية
+
 const initialState : FavoriteState = {
-    favorites: [] , // مصفوفة لحفظ ids للأفلام المفضلة (تأكد من أنها ستكون string)
+    favorites: JSON.parse(localStorage.getItem('favorites') || '[]'),
     loading: false,
     error: null as string | null,
 };
 
-// إضافة الفيلم إلى المفضلة
 export const addFavorite = createAsyncThunk(
     'movies/addFavorite',
     async ({ id }: { id: string }, thunkAPI) => {
         try {
-            // إرسال id الفيلم إلى API لإضافته إلى المفضلة
+            
             const response = await axios.post('https://cinemaguide.skillbox.cc/favorites', { id: String(id) });
-            return response.data.favorites;  // نعيد المصفوفة المحدثة للأفلام المفضلة
+            return response.data.favorites; 
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
             return thunkAPI.rejectWithValue(error.response?.data || 'Error adding favorite');
@@ -34,9 +33,9 @@ export const deleteFavorite = createAsyncThunk(
     'movies/deleteFavorite',
     async ({ id }: { id: string }, thunkAPI) => {
         try {
-            // إرسال id الفيلم إلى API لإضافته إلى المفضلة
+            
             const response = await axios.delete(`https://cinemaguide.skillbox.cc/favorites/${id}`, );
-            return response.data.favorites;  // نعيد المصفوفة المحدثة للأفلام المفضلة
+            return response.data.favorites;  
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
             return thunkAPI.rejectWithValue(error.response?.data || 'Error adding favorite');
@@ -59,22 +58,23 @@ export const getFavorites = createAsyncThunk(
 
 // Slice الخاص بـ Redux
 const favoriteSlice = createSlice({
-    name: 'movie',
+    name: 'favorites',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
     builder
         .addCase(addFavorite.pending, (state) => {
             state.loading = true;
-            state.error = null;  // عند بدء العملية نعيد الـ error إلى null
+            state.error = null; 
         })
         .addCase(addFavorite.fulfilled, (state, action) => {
             state.loading = false;
-            state.favorites = action.payload;  // تحديث المصفوفة المفضلة
+            state.favorites = action.payload;
+            localStorage.setItem('favorites', JSON.stringify(state.favorites));  
         })
         .addCase(addFavorite.rejected, (state, action) => {
             state.loading = false;
-            state.error = action.error.message || 'Error adding favorite';  // تعيين خطأ في حالة الفشل
+            state.error = action.error.message || 'Error adding favorite';  
         })
 
         .addCase(deleteFavorite.pending, (state) => {
@@ -83,7 +83,8 @@ const favoriteSlice = createSlice({
         })
         .addCase(deleteFavorite.fulfilled, (state, action) => {
             state.loading = false;
-            state.favorites = action.payload;  
+            state.favorites = action.payload;
+            localStorage.setItem('favorites', JSON.stringify(state.favorites));  
         })
         .addCase(deleteFavorite.rejected, (state, action) => {
             state.loading = false;
@@ -96,7 +97,8 @@ const favoriteSlice = createSlice({
         })
         .addCase(getFavorites.fulfilled, (state, action) => {
             state.loading = false;
-            state.favorites = action.payload;  
+            state.favorites = action.payload;
+            localStorage.setItem('favorites', JSON.stringify(state.favorites));  
         })
         .addCase(getFavorites.rejected, (state, action) => {
             state.loading = false;

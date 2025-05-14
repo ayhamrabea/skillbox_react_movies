@@ -20,6 +20,11 @@
     &__logo {
         min-width: 143px;
         height: 32px;
+        transition: transform v.$transition-300;
+
+        &:hover{
+            transform: scale(1.05);
+        }
 
         @media (max-width: 767px) {
             min-width: 80px;
@@ -67,6 +72,13 @@
 
         &-link {
             color: #FFFFFF;
+            transition: color v.$transition-300 , border-bottom v.$transition-300;
+
+            &:hover{
+                border-bottom: 1px solid v.$color-Heliotrope;
+                color: v.$color-Heliotrope;
+                padding-bottom: 3px;
+            }
         }
     }
 
@@ -108,6 +120,13 @@
             color: v.$color-White;
             display: flex;
             align-items: center;
+            transition: color v.$transition-300 , border-bottom v.$transition-300;
+
+            &:hover{
+                border-bottom: 1px solid v.$color-Heliotrope;
+                color: v.$color-Heliotrope;
+            }
+
             @include mx.vp-767 {
                 display: none;
             }
@@ -124,6 +143,12 @@
         cursor: pointer;
         color: #FFFFFF;
         height: 24px;
+        transition: color v.$transition-300;
+
+        &:hover{
+            color: v.$color-Heliotrope;
+            border-bottom: none;
+        }
 
         @include mx.vp-767 {
             display: block;

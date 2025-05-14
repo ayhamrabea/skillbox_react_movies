@@ -1,6 +1,6 @@
 import { Button } from "../button/Button";
 
-type CompletedRegistrationProps = {
+export type CompletedRegistrationProps = {
   onGoToLogin: () => void;
 };
 

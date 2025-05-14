@@ -3,10 +3,10 @@ export interface Movie {
     title: string;
     originalTitle: string;
     countriesOfOrigin: string[];
-    genres?: string[];
+    genres: string[];
     budget : string;
-    revenue : string;
-    language : string
+    revenue: string;
+    language: string
     releaseYear: number;
     director:string;
     posterUrl:string;
@@ -30,7 +30,7 @@ export interface RandomMovieState {
 }
 
 export interface MoviesState {
-    list: Movie[];
+    list: Movie[] ;
     loading?: boolean;
     error?: string | null;
     title?:string | null;

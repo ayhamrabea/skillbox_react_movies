@@ -1,70 +1,68 @@
-import React, { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { fetchUserProfile, login } from "../../features/auth/aythSlice";
+import { fetchUserProfile, login } from "../../features/auth/authSlice";
 import { FormField } from "../formField/FormField";
 import { Button } from "../button/Button";
+import { useForm } from "react-hook-form";
+import { loginSchema, LoginSchemaType } from "../../validation/loginSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 
-interface LoginFormProps {
+export interface LoginFormProps {
     onSuccess?: () => void;
 }
 
 export const LoginForm =  ({ onSuccess }: LoginFormProps) => {
-
     const dispatch = useAppDispatch();
-    const { loading, error } = useAppSelector((state) => state.auth);
+    const { loading , error} = useAppSelector((state) => state.auth);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    } = useForm<LoginSchemaType>({
+        resolver: zodResolver(loginSchema),
+    });
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const result = await dispatch(login({ email, password }));
+    const onSubmit = async (data: LoginSchemaType) => {
+        const result = await dispatch(login(data as { email: string; password: string }));
         if (login.fulfilled.match(result)) {
-            onSuccess?.();
             dispatch(fetchUserProfile());
+            onSuccess?.();
         }
-    };
+    }
 
-    const isFormInvalid = !email || !password;
 
     return (
-        <form className="login-form" onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit(onSubmit)}>
             <FormField 
-                errorMessage={error?.email || error?.general}
+                errorMessage={errors.email?.message}
                 iconNmae="email"
                 >
                 <input
-                aria-label="Email"
-                name="email"
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
                 placeholder="Электронная почта"
+                autoComplete="email"
+                {...register("email")}
                 />
             </FormField>
 
             <FormField
-                errorMessage={error?.password || error?.general}
+                errorMessage={errors.password?.message}
                 iconNmae="password"
                 >
                 <input
-                aria-label="Password"
-                name="password"
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
                 placeholder="Пароль"
                 autoComplete="current-password"
+                {...register("password")}
                 />
             </FormField>
+                {error?.general && <span className="form-field__error-text">Ошибка входа! Проверьте введенные данные.</span>}
 
             <Button
                 type="submit"
                 className="btn"
-                disabled={loading || isFormInvalid}
+                disabled={loading}
                 >
                 {loading ? "Загрузка..." : "Войти"}
             </Button>

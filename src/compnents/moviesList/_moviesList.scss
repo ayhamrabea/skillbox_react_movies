@@ -54,8 +54,11 @@
         box-shadow: 0 0 80px v.$color-box-shadow-2 ;
         border-radius: 16px;
         background-color: v.$color-Onyx ;
+        transition:  transform v.$transition-300;
 
         &:hover{
+            transform: scale(1.05);
+
             .movies__item-count{
                 background-color: v.$color-black;
                 color: v.$color-White;

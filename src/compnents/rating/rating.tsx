@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Icon from '../icon/Icon';
 
 interface RatingProps {
     tmdbRating: number;
@@ -12,7 +13,7 @@ export const Rating: FC<RatingProps> = ({tmdbRating}) => {
 
     return (
         <span className={`movie-card__rating movie-card__rating${ratingClass}`}>
-            ⭐ {tmdbRating?.toFixed(1) || 'N/A'}
+            <Icon className='movie-card__rating-icon' name='start' /> {tmdbRating?.toFixed(1) || 'N/A'}
         </span>
     )
 }   

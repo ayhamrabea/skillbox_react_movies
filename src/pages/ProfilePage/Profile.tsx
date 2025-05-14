@@ -2,8 +2,10 @@ import Profile from "../../compnents/profile/Profile"
 
 
 
-export const ProfilePage = () => {
+const ProfilePage = () => {
     return (
         <Profile />
     )
 }
+
+export default ProfilePage;

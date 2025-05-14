@@ -75,16 +75,31 @@
     padding: 12px;
     border-radius: 50px;
     cursor: pointer;
-    color: black;
-    background-color: #FFFFFF;
+    color: v.$color-black;
+    background-color: v.$color-White;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
+    transition: color v.$transition-300;
 
-     @include mx.vp-767{
+
+    &-icon{
+      transition: transform v.$transition-300;
+    }
+
+    &:hover{
+      color: v.$color-Heliotrope;
+
+      .auth-form__close-icon{
+          transform: scale(1.05);
+      }
+    }
+
+    @include mx.vp-767{
       right: 0px;
     }
+
   }
 
   &__copleted{
@@ -110,4 +125,5 @@
       padding: 0;
     }
   }
+
 }

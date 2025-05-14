@@ -71,7 +71,7 @@ export const Navbar = () => {
                         to={user ? "/profile" : "#"}
                         onClick={!user ? handleAuthClick : undefined}
                         >
-                        {user ? user.name : "Войти"}
+                        {user?.name || "Войти"}
                     </Link>
 
                     <Link

@@ -1,117 +1,95 @@
 ;import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { registerUser } from "../../features/auth/aythSlice";
+import { registerUser } from "../../features/auth/authSlice";
 import { FormField } from "../formField/FormField";
 import { Button } from "../button/Button";
 import { useEffect, useState } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { registerSchema, RegisterSchemaType } from "../../validation/registerSchema";
+import { useForm } from "react-hook-form";
 
 
-type RegisterFormProps = {
+export type RegisterFormProps = {
   onCompleted: () => void;
 };
 
 export const RegisterForm = ({ onCompleted }: RegisterFormProps) => {
   const dispatch = useAppDispatch();
-
-  const { loading  } = useAppSelector((state) => state.auth);
-  const [localError, setError] = useState<string | null>(null);
-  const [formData, setFormData] = useState({
-    email: '',
-    name: '',
-    surname: '',
-    password: '',
-    password2: '',
-  });
-
+  const { loading , error  } = useAppSelector((state) => state.auth);
   const [isRegistered, setIsRegistered] = useState(false);
 
+  const { register, handleSubmit, formState: { errors } } = useForm<RegisterSchemaType>({
+    resolver: zodResolver(registerSchema),
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (formData.password !== formData.password2) {
-      setError(" пароль не совпадает ");
-      return;
-    }
-    const result = await dispatch(registerUser(formData));
+
+  const onSubmit = async (data: RegisterSchemaType) => {
+    const result = await dispatch(registerUser(data));
     if (registerUser.fulfilled.match(result)) {
       setIsRegistered(true);
     }
-  };
+  }
 
-  useEffect(() => {
+    useEffect(() => {
     if (isRegistered) {
       onCompleted();
     }
   }, [isRegistered, onCompleted]);
 
-  const isFormInvalid = !formData;
+
+
+
+
+  
 
   return (
-    <form className="register-form" onSubmit={handleSubmit}>
-      {localError && <p className="register-form__error">{localError}</p>}
-
-      <FormField iconNmae="email">
+    <form className="register-form"onSubmit={handleSubmit(onSubmit)}>
+      {error && <p className="auth-form__error"> {error.general}</p>}
+      <FormField errorMessage={errors.email?.message} iconNmae="email">
         <input
           type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
+          {...register("email")}
           placeholder="Электронная почта"
-          required
         />
       </FormField>
 
-      <FormField iconNmae="auth">
+
+      <FormField errorMessage={errors.name?.message} iconNmae="auth">
         <input
           type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
+          {...register("name")}
           placeholder="Имя"
-          required
         />
       </FormField>
 
-      <FormField iconNmae="auth">
+      <FormField errorMessage={errors.surname?.message} iconNmae="auth">
         <input
           type="text"
-          name="surname"
-          value={formData.surname}
-          onChange={handleChange}
-           placeholder="Фамилия"
-          required
+          {...register("surname")}
+          placeholder="Фамилия"
         />
       </FormField>
 
-      <FormField iconNmae="password">
+      <FormField errorMessage={errors.password?.message} iconNmae="password">
         <input
           type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-           placeholder="Пароль"
-          required
+          {...register("password")}
+          placeholder="Пароль"
         />
       </FormField>
 
-      <FormField iconNmae="password">
+      <FormField errorMessage={errors.password2?.message} iconNmae="password">
         <input
           type="password"
-          name="password2"
-          value={formData.password2}
-          onChange={handleChange}
-           placeholder="Подтвердите пароль"
-          required
+          {...register("password2")}
+          placeholder="Подтвердите пароль"
         />
       </FormField>
 
       <Button
             type="submit"
             className="btn"
-            disabled={loading || isFormInvalid}
+            disabled={loading}
             >
             {loading ? "Загрузка..." : "Зарегистрироваться"}
         </Button>

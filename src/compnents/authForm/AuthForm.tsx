@@ -4,37 +4,31 @@ import { RegisterForm } from "../registerForm/RegisterForm";
 import { AuthFormProps } from "../../models/auth";
 import { CompletedRegistration } from "../completedRegistraion/CompletedRegistraion";
 import { AnimatePresence, motion } from "framer-motion";
+import Icon from "../icon/Icon";
+import { Button } from "../button/Button";
 
 type AuthStep = "login" | "register" | "completed";
 
 export const AuthForm = ({ onClose }: AuthFormProps) => {
     const [authStep, setAuthStep] = useState<AuthStep>("register");
 
-    const renderForm = () => {
-
-    let content;
-    switch (authStep) {
-        case "register":
-            content = <RegisterForm onCompleted={() => setAuthStep("completed")} />;
-            break;
-        case "login":
-            content = <LoginForm onSuccess={onClose} />;
-            break;
-        case "completed":
-            content = <CompletedRegistration onGoToLogin={() => setAuthStep("login")} />;
-            break;
-    }
+const renderForm = () => {
+    const authComponents = {
+        register: <RegisterForm onCompleted={() => setAuthStep("completed")} />,
+        login: <LoginForm onSuccess={onClose} />,
+        completed: <CompletedRegistration onGoToLogin={() => setAuthStep("login")} />,
+    };
 
     return (
         <AnimatePresence mode="wait">
             <motion.div
                 key={authStep}
-                initial={{opacity: 0}}
-                animate={{opacity: 1}}
-                exit={{opacity: 0}}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 transition={{ duration: 0.4 }}
             >
-                {content}
+                {authComponents[authStep]}
             </motion.div>
         </AnimatePresence>
     );
@@ -74,11 +68,10 @@ export const AuthForm = ({ onClose }: AuthFormProps) => {
                         </div>
                     )}
 
-                    <button className="auth-form__close" type="button" onClick={onClose}>
-                        <svg className="auth-form__close-icon" width="24" height="24" aria-hidden="true">
-                            <use xlinkHref="/vite.svg#icon-close" />
-                        </svg>
-                    </button>
+                    <Button className="auth-form__close" type="button" onClick={onClose} aria-label="close">
+                        <Icon className="auth-form__close-icon" name="close" />
+                    </Button>
+                    
                 </motion.div>
             </motion.div>
         </AnimatePresence>

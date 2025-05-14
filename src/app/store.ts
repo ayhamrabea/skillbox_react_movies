@@ -5,7 +5,7 @@ import MoviesSlice from "../features/movies/MoviesSlice";
 import MoviesTopTenSlice from '../features/topTen/TopTenSlice'
 import Geners from '../features/genres/GenresSlice'
 import searchSlice from "../features/search/searchSlice";
-import authSlice from "../features/auth/aythSlice";
+import authSlice from "../features/auth/authSlice";
 import GenreMoviesSlice from "../features/genres/GenreMoviesSlice";
 import favoriteSlice from "../features/favorite/FavoriteSlice";
 

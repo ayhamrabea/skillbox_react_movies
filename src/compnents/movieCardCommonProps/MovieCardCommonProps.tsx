@@ -8,6 +8,7 @@ import { addFavorite, deleteFavorite, getFavorites } from "../../features/favori
 import { Trailer } from "../trailer/Trailer";
 import { AuthForm } from "../authForm/AuthForm";
 import { Rating } from "../rating/rating";
+import Icon from "../icon/Icon";
 
 interface MovieCardCommonProps {
     movie: Movie;
@@ -56,7 +57,6 @@ const MovieCardCommon: FC<MovieCardCommonProps> = ({ movie, onResetMovie, showDe
                     <div className="movie-card__info">
                         <div className="movie-card__meta">
                             <Rating tmdbRating={movie.tmdbRating}/>
-                            {/* <span className="movie-card__rating">⭐ {movie.tmdbRating?.toFixed(1) || 'N/A'}</span> */}
                             <span className="movie-card__year">{movie.releaseYear}</span>
                             <span className="movie-card__genre">{movie.genres?.[0]}</span>
                             <span className="movie-card__runtime">{timeComversion(movie.runtime)}</span>
@@ -70,23 +70,19 @@ const MovieCardCommon: FC<MovieCardCommonProps> = ({ movie, onResetMovie, showDe
                         {showDetails && <Link className="btn btn--Onyx" to={`movie/${movie.id}`}>О фильме</Link>}
 
                         <Button className='btn btn--Onyx btn--icon' aria-label="добавить в избранне" onClick={handleAddToFavorites}>
-                            <svg className="movie-card__actions-icon" width="24" height="24" aria-hidden="true">
-                                <use xlinkHref={`/vite.svg#icon-${isFavorite ? 'favoriteTrue' : 'favorite'}`} />
-                            </svg>
+                            <Icon className="movie-card__actions-icon" name={`${isFavorite ? 'favoriteTrue' : 'favorite'}`}/>
                         </Button>
 
                         {onResetMovie && (
                             <Button className="btn btn--Onyx btn--icon" onClick={onResetMovie} aria-label="менять филм">
-                                <svg className="movie-card__actions-icon" width="24" height="24" aria-hidden="true">
-                                    <use xlinkHref="/vite.svg#icon-reset" />
-                                </svg>
+                                <Icon className="movie-card__actions-icon" name='reset'/>
                             </Button>
                         )}
                     </div>
                 </div>
                 <div className="movie-card__poster">
                     <div className="movie-card__poster-img">
-                        <img src={movie.posterUrl ? movie.posterUrl : '//empty.png'} alt={movie.title} />
+                        <img src={movie.posterUrl ? movie.posterUrl : '/empty.png'} alt={movie.title} />
                     </div>
                 </div>
             </div>

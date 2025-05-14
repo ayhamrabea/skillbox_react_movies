@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, } from "react"
 import { MovieCardProps } from "../../models/Movies"
 import { renderDetailItem } from "../renderDetailItem/RenderDetailItem"
 import MovieCardCommon from "../movieCardCommonProps/MovieCardCommonProps";
@@ -7,8 +7,6 @@ import MovieCardCommon from "../movieCardCommonProps/MovieCardCommonProps";
 
 
 export const MovieCard: FC<MovieCardProps> = ({ movie }) => {
-
-
 
 
     return (

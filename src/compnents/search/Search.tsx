@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { setSearchTerm } from "../../features/search/searchSlice";
+import Icon from "../icon/Icon";
 
 
 interface SearchProps {
@@ -19,9 +20,7 @@ export const Search: FC<SearchProps> = ({ setSearchInput}) => {
     return (
             <div className='customInput'>
                 <button className="customInput__close" type="button" onClick={() => closeInput()}>
-                    <svg className="customInput__close-icon" width="24" height="24" aria-hidden="true">
-                        <use xlinkHref="/vite.svg#icon-close" />
-                    </svg>
+                    <Icon className="customInput__close-icon" name="close" />
                 </button>
                 <input
                     type="text"
@@ -31,9 +30,7 @@ export const Search: FC<SearchProps> = ({ setSearchInput}) => {
                     className="customInput__input"
                 />
                 <span className="customInput__icon" >
-                    <svg className="customInput__close-icon" width="24" height="24" aria-hidden="true">
-                        <use xlinkHref="/vite.svg#icon-search" />
-                    </svg>
+                    <Icon className="customInput__close-icon" name="search" />
                 </span>
             </div>
         

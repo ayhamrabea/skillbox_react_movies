@@ -35,10 +35,13 @@ export const fetchUserProfile = createAsyncThunk(
             const response = await axios.get('https://cinemaguide.skillbox.cc/profile', {
                 withCredentials: true,
             });
-            // console.log("USER PROFILE RESPONSE:", response.data); 
             return response.data;
         } catch (err) {
             const error = err as AxiosError<{ message: string }>;
+            // إذا كان الخطأ 401 نعيد null بدل رفض البيانات
+            if (error.response?.status === 401) {
+                return thunkAPI.rejectWithValue(null);
+            }
             return thunkAPI.rejectWithValue({ message: error.response?.data.message || 'Failed to load user data' });
         }
     }
@@ -58,6 +61,23 @@ export const registerUser = createAsyncThunk(
     }
 );
 
+
+export const logoutUser = createAsyncThunk(
+    'auth/logoutUser',
+    async (_, thunkAPI) => {
+        try {
+            await axios.get('https://cinemaguide.skillbox.cc/auth/logout'); 
+            return true;
+        } catch (err) {
+            const error = err as AxiosError<{ message: string }>;
+            console.error('Logout failed', error);
+            return thunkAPI.rejectWithValue({
+                general: error.response?.data.message || 'Logout failed',
+            });
+        }
+    }
+);
+
 // --- Slice ---
 const authSlice = createSlice({
     name: 'auth',
@@ -66,11 +86,12 @@ const authSlice = createSlice({
         logout: (state) => {
             state.user = null;
             state.error = null;
-            // لا حاجة إلى حذف أي شيء من localStorage
+            localStorage.removeItem('user');
         },
     },
     extraReducers: (builder) => {
         builder
+            //login
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -78,6 +99,7 @@ const authSlice = createSlice({
             .addCase(login.fulfilled, (state, action) => {
                 state.loading = false;
                 state.user = action.payload;
+                localStorage.setItem('user', JSON.stringify(action.payload));
             })
             .addCase(login.rejected, (state, action) => {
                 state.loading = false;
@@ -88,6 +110,7 @@ const authSlice = createSlice({
                 };
                 state.error = payload || { general: 'Unknown error' };
             })
+            //register
             .addCase(registerUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -105,6 +128,7 @@ const authSlice = createSlice({
                 };
                 state.error = payload || { general: 'Unknown error' };
             })
+            //profile
             .addCase(fetchUserProfile.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -115,8 +139,22 @@ const authSlice = createSlice({
             })
             .addCase(fetchUserProfile.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.payload || { general: 'Unknown error' };
-            });
+                if (action.payload === null) {
+                    state.user = null;
+                    state.error = null;
+                } else {
+                    state.error = action.payload || { general: 'Unknown error' };
+                }
+            })
+            //logout
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.user = null;
+                state.error = null;
+            })
+            .addCase(logoutUser.rejected, (state, action) => {
+                const payload = action.payload as { general?: string };
+                state.error = payload || { general: 'Logout failed' };
+            })
     }
 });
 

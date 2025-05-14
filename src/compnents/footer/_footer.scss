@@ -23,11 +23,13 @@
         align-items: center;
         transition: border v.$transition-300;
         cursor: pointer;
+        transition: color v.$transition-300 , border-bottom v.$transition-300;
 
         &:hover{
-            border: 1px solid v.$color-Blue-Jeans;
+            border: 1px solid v.$color-Heliotrope;
+
             .footer__item-link{
-                color: v.$color-Blue-Jeans;
+                color: v.$color-Heliotrope;
             }
         }
 

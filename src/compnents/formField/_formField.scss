@@ -2,56 +2,71 @@
 @use '../../styles/mixins' as mx;
 
 .form-field {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
-  width: 100%;
-  border: 1px solid rgba(0, 0, 0, 0.4);
-  border-radius: 8px;
-  position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 
-  &__label {
-    font-size: 14px;
-    font-weight: 500;
-    color: rgba(255, 255, 255, 0.6980392157);
-  }
+    &__input-wrapper {
+      position: relative;
+      width: 100%;
 
-  &__error-text {
-    color: #FF7575;
-    font-size: 12px;
-  }
-
-  &__icon{
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    color: v.$color-border;
-    transform: translateY(-50%);
-
-  }
-  > input,
-  > textarea {
-    border-radius: 8px;
-    font-size: 16px;
-    border: 1px solid var(--border);
-    padding: 12px 16px 12px 42px;
-    transition: border-color 0.3s ease, outline 0.3s ease;
-
-    &:invalid {
-      border-color: #FF7575;
-    }
-  }
-
-  &:focus-within {
-    > input,
-    > textarea {
-      outline: none;
-      border-color: var(--primary);
+        &:hover{
+          .form-field__icon{
+          color: v.$color-Maximum-Blue-Purple;;
+        }
+        }
     }
 
-    > .form-field__label {
-      color: var(--text-primary);
+    input,
+    textarea {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border-radius: 8px;
+      font-size: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.4);
+      transition: border-color v.$transition-300;
+
+      &:focus, &:hover {
+        border-color: v.$color-Maximum-Blue-Purple;
+        outline: none;
+      }
+
+      &:invalid {
+        border-color: v.$color-error;
+      }
     }
-  }
+
+    &__icon {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      transform: translateY(-50%);
+      color: v.$color-border;
+      pointer-events: none;
+      z-index: 1;
+      transition: color v.$transition-300;
+    }
+
+    &__error-text{
+      color: v.$color-error;
+      font-size: 14px;
+    }
+
+    &__error-text {
+      color: v.$color-error;
+      font-size: 12px;
+      padding-left: 4px;
+    }
+
+    &--error {
+      input,
+      textarea {
+        border-color: v.$color-error;
+      }
+
+      .form-field__icon {
+        color: v.$color-error;
+      }
+    }
 }
