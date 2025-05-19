@@ -3,3 +3,8 @@
 @use './container';
 @use './visually-hidden';
 @use './components';
+@use './fonts';
+
+body {
+    font-family: $ff-main;
+}
