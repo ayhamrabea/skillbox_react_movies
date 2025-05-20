@@ -1,54 +1,91 @@
-# React + TypeScript + Vite
+🎬 Skillbox React Movies
+Современное веб-приложение на React, позволяющее пользователям:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔐 Регистрироваться и входить в аккаунт
 
-Currently, two official plugins are available:
+🔍 Искать фильмы
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+📽️ Просматривать детали фильмов и трейлеры
 
-## Expanding the ESLint configuration
+👤 Управлять личным профилем (только для авторизованных пользователей)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🌐 Демо: skillbox-react-movies.vercel.app
+📦 Репозиторий: ayhamrabea/skillbox_react_movies
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+🛠️ Стек технологий
+React (функциональные компоненты + хуки)
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Redux Toolkit + RTK Query
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+React Router (App Router)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+SCSS-модули (модульные стили)
+
+Reqres.in API (тестовая авторизация)
+
+Vite (сборка проекта)
+
+Vercel (развёртывание)
+
+🚀 Основные возможности
+🔐 Авторизация
+
+Вход и регистрация через тестовый API
+
+Сохранение токена в localStorage
+
+Защищённый маршрут профиля
+
+🎬 Поиск фильмов
+
+Получение данных с публичного API
+
+Отображение списка фильмов с постерами
+
+Детальная страница фильма с трейлером
+
+📱 Адаптивный интерфейс
+
+Стиль через SCSS-модули
+
+Поддержка мобильных и десктопных экранов
+
+Анимации загрузки
+
+📦 Установка проекта
+bash
+Copy
+Edit
+git clone https://github.com/ayhamrabea/skillbox_react_movies.git
+cd skillbox_react_movies
+npm install
+npm run dev
+Убедитесь, что у вас установлены Node.js и npm.
+
+
+📁 Структура проекта
+less
+Copy
+Edit
+├── src/
+│   ├── components/         // UI-компоненты
+│   ├── features/           // Redux slices и API
+│   ├── pages/              // Страницы маршрутов
+│   ├── styles/             // SCSS-файлы
+│   ├── App.tsx
+│   └── main.tsx
+👤 О себе
+Меня зовут Айхам, я начинающий Frontend-разработчик, увлечённый созданием красивых и функциональных интерфейсов. Этот проект я разработал в рамках тестового задания на стажировку от Skillbox. Он демонстрирует мои знания в следующих областях:
+
+React + Redux Toolkit
+
+Авторизация и маршрутизация
+
+Работа с API
+
+Структура и стилизация компонентов
+
+📬 Контакты
+GitHub: @ayhamrabea
+
+Email: ayhamrabea05@gmail.com
