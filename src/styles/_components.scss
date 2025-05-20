@@ -1,14 +1,14 @@
+@use '../components/authForm/authForm';
 @use '../components/button/button';
+@use '../components/formField/formField';
 @use '../components/moviecard/movieCard';
 @use '../components/moviesList/moviesList';
 @use '../components/navbar/navbar';
 @use '../components/search/custom-Input';
 @use '../components/search/search';
 @use '../components/trailer/trailer';
-@use '../components/AuthForm/authForm';
-@use '../components/FormField/formField';
 @use '../components/registerForm/registerForm';
 @use '../components/loginForm/loginForm';
 @use '../components/profile/profile';
+@use '../components/loader/loader';
 @use '../components/footer/footer';
-@use '../components/Loader/loader';
