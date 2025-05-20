@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { fetchGenresMovies } from "../../features/genres/GenresSlice";
-import { Loader } from "../../compnents/loader/Loader";
+import { Loader } from "../../components/loader/Loader";
 import { Link } from "react-router-dom";
 import posters  from '../../api/images.json'
 

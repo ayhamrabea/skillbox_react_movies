@@ -1,11 +1,11 @@
-import { MoviesList } from "../../compnents/moviesList/MoviesList";
+import { MoviesList } from "../../components/moviesList/MoviesList";
 import { FC, useEffect } from "react";
 import { useAppDispatch , useAppSelector } from "../../hooks/Redux";
 import { fetchTopTenMovies } from "../../features/topTen/TopTenSlice";
 import { FetchRandomMovie } from "../../features/randomMovie/RandomMovieSlice";
-import { Loader } from "../../compnents/loader/Loader";
-import { ErrorFunction } from "../../compnents/error/Error";
-import { RandomMovieCard } from "../../compnents/randomMovie/RandomMovieCard ";
+import { Loader } from "../../components/loader/Loader";
+import { ErrorFunction } from "../../components/error/Error";
+import { RandomMovieCard } from "../../components/randomMovie/RandomMovieCard ";
 
 
 const Mainpage: FC = () => {

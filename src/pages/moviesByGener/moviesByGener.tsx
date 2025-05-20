@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
-import { MoviesList } from "../../compnents/moviesList/MoviesList";
+import { MoviesList } from "../../components/moviesList/MoviesList";
 import { fetchMoviesByGenre } from "../../features/genres/GenreMoviesSlice";
 import { useSearchParams } from "react-router-dom";
 

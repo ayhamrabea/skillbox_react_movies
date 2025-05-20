@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks/Redux";
 import { fetchMovie } from "../../features/movie/MovieSlice";
-import { ErrorFunction } from "../../compnents/error/Error";
-import { MovieCard } from "../../compnents/moviecard/MovieCard";
-import { Loader } from "../../compnents/loader/Loader";
+import { ErrorFunction } from "../../components/error/Error";
+import { MovieCard } from "../../components/moviecard/MovieCard";
+import { Loader } from "../../components/loader/Loader";
 import { useParams } from "react-router-dom";
 
 const MoviePage = () => {
