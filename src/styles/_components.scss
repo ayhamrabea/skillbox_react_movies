@@ -4,11 +4,11 @@
 @use '../compnents/navbar/navbar';
 @use '../compnents/search/custom-Input';
 @use '../compnents/search/search';
-@use '../compnents/Loader/Loader';
+@use '../compnents/Loader/loader';
 @use '../compnents/trailer/trailer';
-@use '../compnents/AuthForm/AuthForm';
-@use '../compnents/FormField/FormField';
-@use '../compnents/registerForm/RegisterForm';
-@use '../compnents/loginForm/LoginForm';
+@use '../compnents/AuthForm/authForm';
+@use '../compnents/FormField/formField';
+@use '../compnents/registerForm/registerForm';
+@use '../compnents/loginForm/loginForm';
 @use '../compnents/profile/profile';
 @use '../compnents/footer/footer';
