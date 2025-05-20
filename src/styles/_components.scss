@@ -4,7 +4,6 @@
 @use '../components/navbar/navbar';
 @use '../components/search/custom-Input';
 @use '../components/search/search';
-@use '../components/Loader/loader';
 @use '../components/trailer/trailer';
 @use '../components/AuthForm/authForm';
 @use '../components/FormField/formField';
@@ -12,3 +11,4 @@
 @use '../components/loginForm/loginForm';
 @use '../components/profile/profile';
 @use '../components/footer/footer';
+@use '../components/Loader/loader';
