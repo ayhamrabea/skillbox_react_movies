@@ -1,4 +1,4 @@
-# 🎬 Skillbox React Movies
+# 🎬 React Movies
 
 Современное веб-приложение на **React**, позволяющее пользователям:
 
@@ -23,7 +23,7 @@
 [Перейти к демо](https://skillbox-react-movies.vercel.app/)
 
 ## 📦 Репозиторий
-[GitHub - skillbox_react_movies](https://github.com/ayhamrabea/skillbox_react_movies)
+[GitHub - skillbox_react_movies](https://github.com/ayhamrabea/react_movies)
 
 ---
 
